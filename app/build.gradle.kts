@@ -60,6 +60,7 @@ dependencies {
     implementation(AndroidX.coreKtx)
     implementation(LifeCycle.runtimeKtx)
 
+    implementation(Compose.composeCompiler)
     implementation(Compose.activityCompose)
 
     implementation(Compose.composeUi)
