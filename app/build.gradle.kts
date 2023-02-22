@@ -1,6 +1,8 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id(Build.androidGradlePlugin)
+    id(Build.kotlinGradlePlugin)
+    kotlin("kapt")
+    id(Hilt.hiltAndroid)
 }
 
 android {
@@ -15,6 +17,10 @@ android {
         versionName = AppConfig.versionName
 
         testInstrumentationRunner = AppConfig.androidTestInstrumentation
+
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -26,6 +32,7 @@ android {
             isMinifyEnabled = false
         }
     }
+    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -33,15 +40,51 @@ android {
     kotlinOptions {
         jvmTarget = AppConfig.versionJVM
     }
+
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Compose.composeCompilerVersion
+    }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+        resources.excludes.add("META-INF/LICENSE.md")
+        resources.excludes.add("META-INF/LICENSE-notice.md")
+    }
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.6.0")
-    implementation("com.google.android.material:material:1.8.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(AndroidX.coreKtx)
+    implementation(LifeCycle.runtimeKtx)
+
+    implementation(Compose.activityCompose)
+
+    implementation(Compose.composeUi)
+    implementation(Compose.uiToolingPreview)
+
+    implementation(Compose.composeMaterial)
+
+    implementation(AndroidX.appCompat)
+    implementation(Google.material)
+    implementation(AndroidX.constraintlayout)
+
+    implementation(Hilt.hiltAndroidVersion)
+    kapt(Hilt.hiltCompiler)
+
+    testImplementation(Testing.junit4)
+    androidTestImplementation(Testing.junitAndroidExt)
+    androidTestImplementation(Testing.espressoCore)
+
+    androidTestImplementation(Testing.composeUiTest)
+    debugImplementation(Compose.uiTooling)
+    debugImplementation(Testing.composeUiTestManifest)
+
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
