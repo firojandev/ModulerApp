@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ModulerApp"
 include(":app")
+include(":core")
