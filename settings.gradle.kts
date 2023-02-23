@@ -16,3 +16,5 @@ dependencyResolutionManagement {
 rootProject.name = "ModulerApp"
 include(":app")
 include(":core")
+include(":network")
+include(":domain")

@@ -5,11 +5,10 @@ plugins {
 apply {
     from("$rootDir/base-module.gradle")
 }
-
 android {
-    namespace = "com.test.core"
+    namespace = "com.example.domain"
+
 }
 
 dependencies {
-
 }

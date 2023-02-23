@@ -4,4 +4,5 @@ plugins {
     id(Build.libraryGradlePlugin) version Build.androidGradlePluginVersion apply false
     id(Build.kotlinGradlePlugin) version Build.kotlinGradlePluginVersion apply false
     id(Hilt.hiltAndroid) version Hilt.version apply false
+
 }

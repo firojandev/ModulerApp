@@ -7,9 +7,8 @@ apply {
 }
 
 android {
-    namespace = "com.test.core"
+    namespace = "com.example.network"
 }
 
 dependencies {
-
 }
